@@ -1,4 +1,4 @@
-name: Deploy .ZIP to GitHub Pages
+name: Deploy 고부가가치 to GitHub Pages
 on:
   push:
     branches: [main]

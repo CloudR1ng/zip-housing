@@ -7,11 +7,6 @@ export function initMotion(initialRegion) {
   const hero = document.querySelector(".hero");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   let moving = !reduced.matches;
-  const control = document.createElement("button");
-  control.className = "motion-toggle";
-  control.textContent = moving ? "모션 끄기" : "모션 켜기";
-  control.setAttribute("aria-pressed", String(moving));
-  hero.append(control);
   const label = document.createElement("div");
   label.className = "network-label";
   label.innerHTML =
@@ -25,7 +20,6 @@ export function initMotion(initialRegion) {
       powerPreference: "low-power",
     });
   } catch {
-    control.remove();
     label.remove();
     return;
   }
@@ -201,15 +195,9 @@ export function initMotion(initialRegion) {
       cancelAnimationFrame(frame);
       frame = 0;
     }
-    control.textContent = moving ? "모션 끄기" : "모션 켜기";
-    control.setAttribute("aria-pressed", String(moving));
     play();
     render();
   }
-  control.onclick = () => {
-    moving = !moving;
-    sync();
-  };
   reduced.addEventListener("change", () => {
     moving = !reduced.matches;
     sync();

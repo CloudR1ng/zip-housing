@@ -102,26 +102,26 @@ try {
 const bookmarks = new Set(saved.filter((id) => homes.some((h) => h.id === id)));
 
 $("#app").innerHTML = `
- <header class="topbar"><a href="#" class="brand" aria-label="닷집 홈">.ZIP<span>나의 생활에 맞는 집</span></a>
+ <header class="topbar"><a href="#" class="brand" aria-label="고부가가치 홈">고부가가치<span>나의 생활에 맞는 집</span></a>
   <nav aria-label="주 메뉴"><button class="nav active" data-view="explore">생활권 탐색</button><button class="nav" data-view="compare">후보 비교 <span id="compare-count">0</span></button><button class="nav" data-view="saved">저장한 생활권</button></nav>
   <button class="key-button" id="connect">${icon("plug-zap")}<span id="connection-label">AI 연결</span></button>
  </header>
  <main>
  <section class="hero"><div class="hero-copy"><div class="eyebrow"><span class="tiny-square"></span> A BETTER PLACE TO BEGIN</div><h1>집을 찾기 전에,<br>나의 <em>생활</em>을 먼저.</h1><p>예산부터 매일의 이동까지. 나에게 맞는 동네를 발견하세요.</p><button id="hero-agent" class="hero-link">AI와 함께 찾아보기 ${icon("arrow-up-right")}</button></div><div id="hero-visual" aria-hidden="true"><div class="visual-grid"></div><div class="coordinate-label">YOUR NEXT CHAPTER<br><b>STARTS HERE.</b></div><span class="coord">36.362° N &nbsp; 127.353° E</span></div><div class="hero-stat"><b>17</b><span>전국 시도</span><div></div><b>68</b><span>시연 생활권</span></div></section>
- <div class="subline"><span>${icon("scan-line")} 생활을 읽는 주거 탐색, .ZIP</span><span class="demo-badge">MVP · 합성 데이터 시연</span></div>
+ <div class="subline"><span>${icon("scan-line")} 생활을 읽는 주거 탐색, 고부가가치</span></div>
  <section id="explore-view">
   <div class="section-heading"><div><span class="section-number">01 / EXPLORE</span><h2>어디에서 시작할까요?</h2></div><button id="method" class="text-button">추천 기준 알아보기 ${icon("arrow-up-right")}</button></div>
   <form id="filters" class="filterbar"><label class="region-field">${icon("map-pin")}<span>살고 싶은 지역<select id="region" aria-label="살고 싶은 지역">${regions.map((r) => `<option ${r.name === conditions.region ? "selected" : ""}>${r.name}</option>`).join("")}</select></span></label><button type="button" id="budget-filter" class="filter-chip">${icon("wallet")}<span id="budget-summary"></span>${icon("chevron-down")}</button><button type="button" id="commute-filter" class="filter-chip">${icon("train-front")}<span id="commute-summary"></span>${icon("chevron-down")}</button><button type="button" id="all-filters" class="filter-chip">${icon("sliders-horizontal")} 상세 조건</button><button class="primary search-button" type="submit">생활권 찾기 ${icon("arrow-right")}</button></form>
   <div class="workspace"><div class="map-wrap"><div class="map-top"><span id="map-title"></span><span class="map-badge">${icon("layers")} 생활권 지도</span></div><div id="map" aria-label="시연 생활권 위치 지도"></div><div class="map-note">${icon("info")} 위치는 생활권 중심 예시이며 실제 매물 위치가 아닙니다.</div><button class="map-reset" id="map-reset" aria-label="지도 전체 보기">${icon("locate-fixed")}</button></div><section class="results-panel" aria-label="추천 생활권"><div class="results-header"><div><span class="section-number">YOUR MATCHES</span><h3>나에게 맞는 생활권 <span id="result-count"></span></h3></div><select id="sort" aria-label="정렬 기준"><option value="fit">적합도순</option><option value="cost">낮은 주거비순</option><option value="time">짧은 이동시간순</option></select></div><div id="results" class="result-list" aria-live="polite"></div><p class="result-footnote">월 지출 = 월세 + 관리비 · 모든 금액은 시연값</p></section></div>
-  <div class="bottom-grid"><article class="insight-card"><div class="insight-icon">${icon("route")}</div><div><span>나의 하루를 기준으로</span><h3 id="destination-heading"></h3><p>이동시간은 고정 목적지 기준의 합성값입니다.</p></div></article><article class="insight-card"><div class="insight-icon">${icon("chart-no-axes-combined")}</div><div><span>설명할 수 있는 추천</span><h3>조건은 명확하게, 근거는 투명하게</h3><p>같은 데이터와 조건에서는 같은 점수를 계산합니다.</p></div><button id="score-guide" aria-label="점수 계산 기준">${icon("arrow-up-right")}</button></article><article class="insight-card agent-promo"><div><span>.ZIP AGENT</span><h3>조건이 바뀌어도, 함께.</h3><p>“월 지출을 50만 원으로 낮춰줘”</p></div><button id="open-agent" aria-label="AI 에이전트 열기">${icon("sparkles")}</button></article></div>
+  <div class="bottom-grid"><article class="insight-card"><div class="insight-icon">${icon("route")}</div><div><span>나의 하루를 기준으로</span><h3 id="destination-heading"></h3><p>이동시간은 고정 목적지 기준의 합성값입니다.</p></div></article><article class="insight-card"><div class="insight-icon">${icon("chart-no-axes-combined")}</div><div><span>설명할 수 있는 추천</span><h3>조건은 명확하게, 근거는 투명하게</h3><p>같은 데이터와 조건에서는 같은 점수를 계산합니다.</p></div><button id="score-guide" aria-label="점수 계산 기준">${icon("arrow-up-right")}</button></article><article class="insight-card agent-promo"><div><span>고부가가치 AGENT</span><h3>조건이 바뀌어도, 함께.</h3><p>“월 지출을 50만 원으로 낮춰줘”</p></div><button id="open-agent" aria-label="AI 에이전트 열기">${icon("sparkles")}</button></article></div>
  </section>
  <section id="compare-view" class="alternate-view" hidden><div class="section-heading"><div><span class="section-number">02 / COMPARE</span><h2>내 선택을 나란히.</h2></div><button class="text-button" data-view="explore">생활권 더 찾기 ${icon("arrow-right")}</button></div><div id="compare-content"></div></section>
  <section id="saved-view" class="alternate-view" hidden><div class="section-heading"><div><span class="section-number">03 / COLLECTION</span><h2>마음에 남은 생활권.</h2></div><span>이 브라우저에 저장됩니다</span></div><div id="saved-content" class="saved-grid"></div></section>
- <footer><a href="#" class="brand">.ZIP</a><span>나의 다음 일상을 찾는 곳.</span><button id="about">서비스 안내</button><span class="footer-right">© 2026 .ZIP · 방과후 티타임 &nbsp; / &nbsp; GOVTECH MVP</span></footer>
+ <footer><a href="#" class="brand">고부가가치</a><span>나의 다음 일상을 찾는 곳.</span><button id="about">서비스 안내</button><span class="footer-right">© 2026 고부가가치 · ACT &nbsp; / &nbsp; GOVTECH MVP</span></footer>
  </main>
  <div id="compare-tray" hidden><span><b id="tray-count">0</b>개 생활권 선택</span><button id="clear-compare" class="text-button">선택 해제</button><button class="primary" data-view="compare">나란히 비교 ${icon("columns-3")}</button></div>
- <button id="agent-fab" aria-label="AI 주거 에이전트 열기">${icon("sparkles")}<span>.ZIP Agent</span></button>
- <aside id="agent-panel" class="agent-panel" hidden aria-label="AI 주거 에이전트"><div class="agent-header"><span class="agent-mark">${icon("sparkles")}</span><div><h2>.ZIP Agent</h2><p id="agent-mode">도구 실행 데모</p></div><button id="close-agent" class="icon-button" aria-label="AI 패널 닫기">${icon("x")}</button></div><div class="agent-notice">시연 데이터로 탐색합니다. AI 연결 시 대화와 조건이 Google로 전송됩니다.</div><div id="messages" class="messages" role="log" aria-live="polite"><div class="message assistant"><span class="message-label">.ZIP AGENT</span><p>어떤 하루를 보내고 싶으세요?<br>예산과 이동시간을 알려주시면 생활권을 찾고, 점수를 계산하고, 후보를 비교해 드려요.</p></div><div class="suggestions"><button data-prompt="월 지출 50만 원 이하로 찾아줘">월 지출 50만 원 이하로</button><button data-prompt="이동시간 20분 이내로 찾아줘">학교까지 20분 이내로</button><button data-prompt="상위 두 후보를 비교해줘">상위 두 후보 비교</button></div></div><div id="agent-progress" hidden role="status"></div><form id="chat-form"><label class="sr-only" for="chat-input">주거 조건 또는 질문</label><textarea id="chat-input" rows="2" maxlength="2000" placeholder="나의 주거 조건을 이야기해 주세요"></textarea><div class="composer-bottom"><button type="button" id="agent-settings" class="text-button">${icon("settings-2")} AI 연결 설정</button><button type="submit" class="send-button" id="send" aria-label="메시지 보내기">${icon("arrow-up")}</button><button type="button" id="stop" hidden class="text-button">중지</button></div></form><div class="agent-bottom">실제 계약 전 가격·매물·지원 자격을 별도로 확인하세요.</div></aside>
+ <button id="agent-fab" aria-label="AI 주거 에이전트 열기">${icon("sparkles")}<span>고부가가치 Agent</span></button>
+ <aside id="agent-panel" class="agent-panel" hidden aria-label="AI 주거 에이전트"><div class="agent-header"><span class="agent-mark">${icon("sparkles")}</span><div><h2>고부가가치 Agent</h2><p id="agent-mode">도구 실행 데모</p></div><button id="close-agent" class="icon-button" aria-label="AI 패널 닫기">${icon("x")}</button></div><div class="agent-notice">시연 데이터로 탐색합니다. AI 연결 시 대화와 조건이 Google로 전송됩니다.</div><div id="messages" class="messages" role="log" aria-live="polite"><div class="message assistant"><span class="message-label">고부가가치 AGENT</span><p>어떤 하루를 보내고 싶으세요?<br>예산과 이동시간을 알려주시면 생활권을 찾고, 점수를 계산하고, 후보를 비교해 드려요.</p></div><div class="suggestions"><button data-prompt="월 지출 50만 원 이하로 찾아줘">월 지출 50만 원 이하로</button><button data-prompt="이동시간 20분 이내로 찾아줘">학교까지 20분 이내로</button><button data-prompt="상위 두 후보를 비교해줘">상위 두 후보 비교</button></div></div><div id="agent-progress" hidden role="status"></div><form id="chat-form"><label class="sr-only" for="chat-input">주거 조건 또는 질문</label><textarea id="chat-input" rows="2" maxlength="2000" placeholder="나의 주거 조건을 이야기해 주세요"></textarea><div class="composer-bottom"><button type="button" id="agent-settings" class="text-button">${icon("settings-2")} AI 연결 설정</button><button type="submit" class="send-button" id="send" aria-label="메시지 보내기">${icon("arrow-up")}</button><button type="button" id="stop" hidden class="text-button">중지</button></div></form><div class="agent-bottom">실제 계약 전 가격·매물·지원 자격을 별도로 확인하세요.</div></aside>
  <dialog id="dialog"><div id="dialog-content"></div></dialog><div id="toast" role="status" hidden></div>`;
 
 function refreshIcons() {
@@ -357,7 +357,7 @@ function methodDialog() {
 }
 function aboutDialog() {
   openDialog(
-    `<span class="section-number">ABOUT .ZIP</span><h2>나의 다음 일상을 찾는 곳.</h2><p>.ZIP은 청년과 대학생의 생활 조건을 바탕으로 주거 생활권을 탐색하는 GovTech MVP입니다. ‘고브텍 수정수정’ 기획서의 전국 탐색·후보 비교·AI Agent 흐름을 구현했습니다.</p><h3>이 MVP에서 가능한 것</h3><p>17개 시도 탐색, 합성 후보 필터링, 재현 가능한 점수 계산, 최대 3개 후보 비교, 브라우저 북마크, Gemini 도구 실행 상담.</p><h3>데이터와 개인정보</h3><p>실제 매물 조회, 길찾기, 정책 자격 심사, 계약 중개 기능은 포함되어 있지 않습니다. AI 연결 시 입력한 대화와 탐색 조건이 Google Gemini API로 직접 전달됩니다. 민감한 개인정보는 입력하지 마세요. API 키는 현재 페이지 메모리에만 보관되고 새로고침하면 사라집니다. 저장한 생활권 ID만 이 브라우저에 남습니다.</p><p class="muted">방과후 티타임 · 2026 GovTech 창업경진대회 MVP</p>`,
+    `<span class="section-number">ABOUT 고부가가치</span><h2>나의 다음 일상을 찾는 곳.</h2><p>고부가가치은 청년과 대학생의 생활 조건을 바탕으로 주거 생활권을 탐색하는 GovTech MVP입니다. ‘고브텍 수정수정’ 기획서의 전국 탐색·후보 비교·AI Agent 흐름을 구현했습니다.</p><h3>이 MVP에서 가능한 것</h3><p>17개 시도 탐색, 합성 후보 필터링, 재현 가능한 점수 계산, 최대 3개 후보 비교, 브라우저 북마크, Gemini 도구 실행 상담.</p><h3>데이터와 개인정보</h3><p>실제 매물 조회, 길찾기, 정책 자격 심사, 계약 중개 기능은 포함되어 있지 않습니다. AI 연결 시 입력한 대화와 탐색 조건이 Google Gemini API로 직접 전달됩니다. 민감한 개인정보는 입력하지 마세요. API 키는 현재 페이지 메모리에만 보관되고 새로고침하면 사라집니다. 저장한 생활권 ID만 이 브라우저에 남습니다.</p><p class="muted">ACT · 2026 GovTech 창업경진대회 MVP</p>`,
   );
 }
 
@@ -431,7 +431,7 @@ function showAgent() {
 function addMessage(text, role = "assistant") {
   const el = document.createElement("div");
   el.className = `message ${role}`;
-  el.innerHTML = `<span class="message-label">${role === "user" ? "YOU" : apiKey ? " .ZIP AGENT" : " .ZIP DEMO"}</span><div class="message-body"></div>`;
+  el.innerHTML = `<span class="message-label">${role === "user" ? "YOU" : apiKey ? " 고부가가치 AGENT" : " 고부가가치 DEMO"}</span><div class="message-body"></div>`;
   const body = el.querySelector(".message-body");
   if (role === "user") body.textContent = text;
   else
@@ -625,7 +625,7 @@ document.addEventListener("click", (e) => {
     const content =
       "\uFEFF" +
       [
-        ".ZIP 생활권 비교 — 합성 시연 데이터",
+        "고부가가치 생활권 비교 — 합성 시연 데이터",
         `조건: ${JSON.stringify(conditions)}`,
         ...rows.map(
           (h) =>
@@ -637,7 +637,7 @@ document.addEventListener("click", (e) => {
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = "ZIP-생활권-비교.txt";
+    a.download = "고부가가치-생활권-비교.txt";
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
